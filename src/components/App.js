@@ -1,13 +1,17 @@
 import React from 'react';
 import './../App.css';
+import Container from 'react-bootstrap/Container'
 import Header from './Header';
-import KegList from './KegList';
+import KegControl from './KegControl.js';
+
 
 function App() {
   return (
     <>
       <Header />
-      <KegList />
+      <Container>
+        <KegControl />
+      </Container>
     </>
   );
 }

@@ -1,39 +1,16 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Keg from './Keg';
+import PropTypes from 'prop-types'
 
-const tempKegList=[
-  {
-  name: '60 Minute IPA',
-  brand: 'Dogfish Head',
-  price: '$6', 
-  alcoholContent: '6%',
-  remainingStock: 124
-  },
-  {
-    name: 'Hazy-O',
-    brand: 'Dogfish Head',
-    price: '$6', 
-    alcoholContent: '6%',
-    remainingStock: 124
-  },
-  {
-    name: 'Liquid Truth Serum IPA',
-    brand: 'Dogfish Head',
-    price: '$6', 
-    alcoholContent: '6%',
-    remainingStock: 124
-  }
-]
-
-function KegList(){
+function KegList(props){
   return(
     <Card style={{width: '40rem'}}>
       <Card.Header>
         <h2>Beer on Tap</h2>
       </Card.Header>
       <Card.Body>
-        {tempKegList.map((beer, index) =>
+        {props.kegList.map((beer, index) =>
           <Keg name={beer.name}
           brand={beer.brand}
           price={beer.price}
@@ -44,6 +21,10 @@ function KegList(){
       </Card.Body>
     </Card>
   )
+}
+
+KegList.propTypes = {
+  kegList: PropTypes.array
 }
 
 export default KegList;
