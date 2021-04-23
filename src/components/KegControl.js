@@ -40,18 +40,19 @@ class KegControl extends React.Component {
   }
 
   handleSellingPint = (id) => {
-    console.log(id)
     const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0];
     const newMasterKegList = this.state.masterKegList.filter(keg => keg.id !== id);
-    this.setState({
-      masterKegList: newMasterKegList.concat({
-        name: selectedKeg.name, 
-        brand: selectedKeg.brand, 
-        price: selectedKeg.price, 
-        alcoholContent: selectedKeg.alcoholContent, 
-        remainingStock: (selectedKeg.remainingStock - 1),
-        id: v4()}).sort((a, b) => (a.name > b.name ? 1 : -1))
-    })
+    if (selectedKeg.remainingStock > 0) {
+      this.setState({
+        masterKegList: newMasterKegList.concat({
+          name: selectedKeg.name, 
+          brand: selectedKeg.brand, 
+          price: selectedKeg.price, 
+          alcoholContent: selectedKeg.alcoholContent, 
+          remainingStock: (selectedKeg.remainingStock - 1),
+          id: v4()}).sort((a, b) => (a.name > b.name ? 1 : -1))
+      })
+    } 
   }
 
   render(){
