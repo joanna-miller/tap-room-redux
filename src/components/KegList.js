@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 
 function KegList(props){
   return(
-    <Card style={{width: '40rem'}}>
-      <Card.Header>
+    <Card>
+      <Card.Header style={{textAlign: 'center' }}>
         <h2>Beer on Tap</h2>
       </Card.Header>
-      <Card.Body>
+      <Card.Body style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
         {props.kegList.map((keg) =>
           <Keg whenKegClicked = {props.onKegSelection}
           whenSellClicked = {props.onPintSale}

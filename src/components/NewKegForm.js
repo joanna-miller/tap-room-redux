@@ -15,7 +15,7 @@ function NewKegForm(props){
         <Form.Control name='brand' type='text' placeholder='Brand' style={{marginBottom: '20px'}}/>
         <Form.Control name='price' type='text' placeholder='Price' style={{marginBottom: '20px'}}/>
         <Form.Control name='alcoholContent' type='text' placeholder='ABV' style={{marginBottom: '20px'}}/>
-        <Button variant="outline-dark" type="submit" style={{marginBottom: '20px'}}>Submit</Button>
+        <Button variant="outline-dark" type="submit" style={{marginBottom: '20px'}}>Add New Keg</Button>
       </Form>
     </React.Fragment>
   );

@@ -1,17 +1,18 @@
 import React from 'react';
 import './../App.css';
-import Container from 'react-bootstrap/Container'
+import { MDBContainer, MDBCol } from 'mdbreact'
 import Header from './Header';
 import KegControl from './KegControl.js';
+
 
 
 function App() {
   return (
     <>
       <Header />
-      <Container >
-        <KegControl />
-      </Container>
+      <MDBContainer>
+        <MDBCol><KegControl /></MDBCol>
+      </MDBContainer>
     </>
   );
 }

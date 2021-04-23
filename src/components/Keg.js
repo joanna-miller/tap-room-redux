@@ -4,7 +4,7 @@ import { Card, Button } from 'react-bootstrap';
 
 function Keg(props){
   return(
-    <Card style={{width: '18rem'}} >
+    <Card style={{ width: '18rem', margin: '20px', textAlign: 'center' }}>
       <Card.Header onClick = {() => props.whenKegClicked(props.id)} ><h3>{props.name}</h3></Card.Header>
       <Card.Body>
         <p>Brand: {props.brand}</p>
