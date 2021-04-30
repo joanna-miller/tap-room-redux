@@ -12,3 +12,20 @@ export const addKeg = (keg) => {
     id: id
   }
 }
+export const selectKeg = (keg) => {
+  const { name, brand, price, alcoholContent, remainingStock, id } = keg;
+  return {
+    type: "SELECT_KEG",
+    name: name,
+    brand: brand,
+    price: price,
+    alcoholContent: alcoholContent,
+    remainingStock: remainingStock,
+    id: id
+  }
+}
+export const unselectKeg = () => {
+  return {
+    type: "UNSELECT_KEG"
+  }
+}

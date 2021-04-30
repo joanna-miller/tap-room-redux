@@ -30,4 +30,27 @@ describe('help queue actions', () => {
       id: 1
     });
   });
+  it('selectKeg should create SELECT_KEG action', () => {
+    expect(actions.selectKeg({
+      name: 'a beer',
+      brand: 'beer brand',
+      price: '$6',
+      alcoholContent: '5%',
+      remainingStock: 124,
+      id: 1
+    })).toEqual({
+      type: 'SELECT_KEG',
+      name: 'a beer',
+      brand: 'beer brand',
+      price: '$6',
+      alcoholContent: '5%',
+      remainingStock: 124,
+      id: 1
+    });
+  });
+  it('unselectKeg should create UNSELECT_KEG action', () => {
+    expect(actions.unselectKeg()).toEqual({
+      type: 'UNSELECT_KEG'
+    });
+  });
 });
