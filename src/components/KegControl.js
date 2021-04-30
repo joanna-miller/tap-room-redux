@@ -8,15 +8,8 @@ import PropTypes from 'prop-types';
 import * as a from './../actions';
 
 class KegControl extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     selectedKeg: null
-  //   };
-  // }
 
   handleClick = () => {
-    console.log(this.props.selectedKeg)
     if (this.isNotEmpty(this.props.selectedKeg)) {
       const { dispatch } = this.props;
       const action = a.unselectKeg()

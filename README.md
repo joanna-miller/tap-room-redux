@@ -5,10 +5,10 @@
 #### _This project was created solely for the education of the author(s) and is not in a complete or portfolio-ready state. It should not be considered representative of professional work._
 
 
-[Epicodus](https://www.epicodus.com/) - [React](https://www.learnhowtoprogram.com/ruby-and-rails/) - [Week 2](https://www.learnhowtoprogram.com/react/react-fundamentals/react-fundamentals-independent-project)
+[Epicodus](https://www.epicodus.com/) - [React](https://www.learnhowtoprogram.com/ruby-and-rails/) - [Week 3](https://www.learnhowtoprogram.com/react/react-with-redux/react-with-redux-independent-project)
 
 
-#### Date created: 04/23/2021
+#### Date created: 04/30/2021
 ---
 
 ## Technologies Used
@@ -19,12 +19,13 @@
 * _MDBReact_
 * _Webpack 4.41.0_
 * _git 2.30.0_
+* _Redux_
 
 ---
 
 ## Description
 
-A tap room application where a bar can track their kegs. Built using the following user stories:
+A tap room application where a bar can track their kegs. All local and shared state are managed using Redux. Built using the following user stories:
 * As a user, I want to see a list/menu of all available kegs. For each keg, I want to see its name, brand, price and alcoholContent.
 * As a user, I want to submit a form to add a new keg to a list.
 * As a user, I want to be able to click on a keg to see its detail page.
