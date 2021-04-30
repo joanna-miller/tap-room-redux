@@ -4,13 +4,14 @@ import KegList from './KegList';
 import KegDetail from './KegDetail';
 import Button from 'react-bootstrap/Button'
 import { v4 } from 'uuid'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class KegControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterKegList: [],
       selectedKeg: null
     };
   }
@@ -28,15 +29,35 @@ class KegControl extends React.Component {
   }
 
   handleAddingNewKegToList = (newKeg) => {
-    console.log(newKeg.id)
-    const newMasterKegList = this.state.masterKegList.concat(newKeg);
-    this.setState({masterKegList: newMasterKegList.sort((a, b) => (a.name > b.name ? 1 : -1)),
-    formVisibleOnPage: false });
+    const { dispatch } = this.props;
+    const { id, name, brand, price, alcoholContent, remainingStock } = newKeg;
+    const action = {
+      type: 'ADD_KEG',
+      id: id,
+      name: name,
+      brand: brand,
+      price: price,
+      alcoholContent: alcoholContent,
+      remainingStock: remainingStock
+    }
+    dispatch(action);
+    this.setState({formVisibleOnPage: false});
   }
 
   handleChangingSelectedKeg = (id) => {
-    const selectedKeg = this.state.masterKegList.filter(keg => keg.id === id)[0];
+    const selectedKeg = this.props.masterKegList[id];
     this.setState({selectedKeg: selectedKeg});
+  }
+  
+  handleDeletingTicket = (id) => {
+    console.log('made it')
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_KEG',
+      id: id
+    }
+    dispatch(action);
+    this.setState({selectedKeg: null});
   }
 
   handleSellingPint = (id) => {
@@ -59,13 +80,13 @@ class KegControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg={this.state.selectedKeg} />
+      currentlyVisibleState = <KegDetail keg={this.state.selectedKeg} onClickingDelete={this.handleDeletingTicket} />
       buttonText = "Return to Keg List"
     } else if (this.state.formVisibleOnPage){
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddingNewKegToList} />
       buttonText = "Return to Keg List"
     } else {
-      currentlyVisibleState = <KegList kegList={this.state.masterKegList} 
+      currentlyVisibleState = <KegList kegList={this.props.masterKegList} 
       onPintSale = {this.handleSellingPint}
       onKegSelection={this.handleChangingSelectedKeg}/>
       buttonText = "Add Keg"
@@ -78,5 +99,17 @@ class KegControl extends React.Component {
     ); 
   };
 }
+
+KegControl.propTypes = {
+  masterKegList: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    masterKegList: state
+  }
+}
+
+KegControl = connect(mapStateToProps)(KegControl);
 
 export default KegControl;

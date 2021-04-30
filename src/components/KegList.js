@@ -10,7 +10,7 @@ function KegList(props){
         <h2>Beer on Tap</h2>
       </Card.Header>
       <Card.Body style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
-        {props.kegList.map((keg) =>
+        {Object.values(props.kegList).map((keg) =>
           <Keg whenKegClicked = {props.onKegSelection}
           whenSellClicked = {props.onPintSale}
           name={keg.name}
@@ -27,7 +27,7 @@ function KegList(props){
 }
 
 KegList.propTypes = {
-  kegList: PropTypes.array,
+  kegList: PropTypes.object,
   onKegSelection: PropTypes.func,
   onPintSale: PropTypes.func
 }
