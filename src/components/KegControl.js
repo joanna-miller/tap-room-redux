@@ -58,7 +58,6 @@ class KegControl extends React.Component {
       dispatch(action);
     }
   } 
- 
 
   render() {
     let currentlyVisibleState = null;
