@@ -14,9 +14,23 @@ describe('rootReducer', () => {
   it('should check that initial state of kegListReducer matches rootReducer', () => {
     expect(store.getState().masterKegList).toEqual(kegListReducer(undefined, { type: null }));
   })
-  
+
   it('should check that initial state of formVisibleReducer matches rootReducer', () => {
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, { type: null }));
   });
+
+  it('should check that ADD_KEG actions works for kegListReducer and rootReducer', () => {
+    const action = {
+      type: 'ADD_KEG',
+      name: 'a beer',
+      brand: 'beer brand',
+      price: '$6',
+      alcoholContent: '5%',
+      remainingStock: 124,
+      id: 1
+    }
+    store.dispatch(action);
+    expect(store.getState().masterKegList).toEqual(kegListReducer(undefined, action));
+  })
 
 });
