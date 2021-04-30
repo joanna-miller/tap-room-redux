@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 
 function KegDetail(props){
   const { keg, onClickingDelete } = props
-  console.log(props)
   return(
     <>
       <h1>Keg Detail</h1>
