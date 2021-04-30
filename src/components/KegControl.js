@@ -3,9 +3,9 @@ import NewKegForm from './NewKegForm';
 import KegList from './KegList';
 import KegDetail from './KegDetail';
 import Button from 'react-bootstrap/Button'
-import { v4 } from 'uuid'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions';
 
 class KegControl extends React.Component {
   constructor(props) {
@@ -22,9 +22,7 @@ class KegControl extends React.Component {
       });
     } else { 
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = a.toggleForm();
       dispatch(action);
     }
   }
@@ -32,19 +30,9 @@ class KegControl extends React.Component {
   handleAddingNewKegToList = (newKeg) => {
     const { dispatch } = this.props;
     const { id, name, brand, price, alcoholContent, remainingStock } = newKeg;
-    const action = {
-      type: 'ADD_KEG',
-      id: id,
-      name: name,
-      brand: brand,
-      price: price,
-      alcoholContent: alcoholContent,
-      remainingStock: remainingStock
-    }
+    const action = a.addKeg(newKeg);
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
   }
 
@@ -54,12 +42,8 @@ class KegControl extends React.Component {
   }
   
   handleDeletingTicket = (id) => {
-    console.log('made it')
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_KEG',
-      id: id
-    }
+    const action = a.deleteKeg(id)
     dispatch(action);
     this.setState({selectedKeg: null});
   }
@@ -69,15 +53,8 @@ class KegControl extends React.Component {
     const keg = this.props.masterKegList[id];
     const { name, brand, price, alcoholContent, remainingStock } = keg
     if (keg.remainingStock > 0) {
-      const action = {
-        type: 'ADD_KEG',
-        id: id,
-        name: name,
-        brand: brand,
-        price: price,
-        alcoholContent: alcoholContent,
-        remainingStock: remainingStock - 1
-      }
+      keg.remainingStock = keg.remainingStock - 1
+      const action = a.addKeg(keg);
       dispatch(action);
     }
   } 
