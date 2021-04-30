@@ -30,6 +30,6 @@ KegList.propTypes = {
   kegList: PropTypes.object,
   onKegSelection: PropTypes.func,
   onPintSale: PropTypes.func
-}
+};
 
 export default KegList;
