@@ -1,6 +1,6 @@
 import rootReducer from '../../reducers/index';
 import { createStore } from 'redux';
-import formVisibleOnPage from '../../reducers/form-visible-reducer';
+import selectedKegReducer from '../../reducers/selected-keg-reducer';
 import kegListReducer from '../../reducers/keg-list-reducer';
 import formVisibleReducer from '../../reducers/form-visible-reducer';
 
@@ -8,7 +8,7 @@ let store = createStore(rootReducer);
 
 describe('rootReducer', () => {
   it('should return default state if no action type is recognized', () => {
-    expect(rootReducer({}, {type: null})).toEqual({masterKegList: {}, formVisibleOnPage: false});
+    expect(rootReducer({}, {type: null})).toEqual({masterKegList: {}, formVisibleOnPage: false, selectedKeg: null});
   })
 
   it('should check that initial state of kegListReducer matches rootReducer', () => {
@@ -39,5 +39,14 @@ describe('rootReducer', () => {
     }
     store.dispatch(action);
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, action));
+  })
+
+  it('should check that SELECT_KEG action works for selectedKegReducer and rootReducer', () => {
+    const action = {
+      type: 'SELECT_KEG',
+      id: 1
+    }
+    store.dispatch(action);
+    expect(store.getState().selectedKeg).toEqual(selectedKegReducer(undefined, action));
   })
 });;

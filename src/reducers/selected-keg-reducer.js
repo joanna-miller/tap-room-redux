@@ -1,3 +1,11 @@
 export default (state = null, action) => {
-  return state;
+  const { id, type, ...payload } = action;
+  switch(action.type) {
+    case 'SELECT_KEG':
+      const newState = { ...state }
+      const selectedKeg = { ...newState[id] }
+      return selectedKeg;
+    default: 
+      return state;
+  }
 }
